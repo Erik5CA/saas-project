@@ -1,4 +1,25 @@
 @baseUrl = http://localhost:3000
 
-###
-GET {{baseUrl}}/users
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMDRjM2QwMy0wYzVkLTQ2NDctOTlkNy03NGI2YzRhNDc5ODUiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzc2MTg1MDk3LCJleHAiOjE3NzYyNzE0OTd9.sX-x8bc6Ms5cGq7v90vZQ8mzFVgMGJT22LZzRvg7JsY
+
+### Sign Up
+POST {{baseUrl}}/auth/sign-up
+Content-Type: application/json
+
+{
+  "email": "test2@email.com",
+  "password": "123456"
+}
+
+### Sign In
+POST {{baseUrl}}/auth/sign-in
+Content-Type: application/json
+
+{
+  "email": "test@email.com",
+  "password": "123456"
+}
+
+### Profile
+GET {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}}
