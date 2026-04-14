@@ -3,9 +3,10 @@ import { DbModule } from '../db/db.provider';
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserRepository } from './user.repository';
+import { MembershipModule } from '../memberships/membership.module';
 
 @Module({
-  imports: [DbModule],
+  imports: [DbModule, MembershipModule],
   controllers: [UserController],
   providers: [UserService, UserRepository],
   exports: [UserService, UserRepository],

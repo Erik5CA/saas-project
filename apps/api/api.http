@@ -27,3 +27,8 @@ Authorization: Bearer {{token}}
 ### User Tenants
 GET {{baseUrl}}/me/tenants
 Authorization: Bearer {{token}}
+
+### List Users in Tenant
+GET {{baseUrl}}/users
+Authorization: Bearer {{token}}
+x-tenant-id: b30bd119-44ee-4fec-b5de-946073787919
