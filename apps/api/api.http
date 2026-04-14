@@ -1,13 +1,13 @@
 @baseUrl = http://localhost:3000
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJmMDRjM2QwMy0wYzVkLTQ2NDctOTlkNy03NGI2YzRhNDc5ODUiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzc2MTg1MDk3LCJleHAiOjE3NzYyNzE0OTd9.sX-x8bc6Ms5cGq7v90vZQ8mzFVgMGJT22LZzRvg7JsY
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4YTJmOWFhZi0xNTEyLTQ5ZjgtYTJjNi02OWMwZmYxZjM2ZGMiLCJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwiaWF0IjoxNzc2MjAzNDA4LCJleHAiOjE3NzYyODk4MDh9.3s8AxLYfZeZjdt0b6X0jVsP2TTodypQw2nCeNNIuTkY
 
 ### Sign Up
 POST {{baseUrl}}/auth/sign-up
 Content-Type: application/json
 
 {
-  "email": "test2@email.com",
+  "email": "test@email.com",
   "password": "123456"
 }
 
@@ -22,4 +22,8 @@ Content-Type: application/json
 
 ### Profile
 GET {{baseUrl}}/auth/profile
+Authorization: Bearer {{token}}
+
+### User Tenants
+GET {{baseUrl}}/me/tenants
 Authorization: Bearer {{token}}

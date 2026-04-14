@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
+import { PgTransaction } from 'drizzle-orm/pg-core';
 import type { Database } from 'src/db';
 import { users, type User, type NewUser } from 'src/db/schema';
 
@@ -24,8 +25,10 @@ export class AuthRepository {
   async signUp({
     email,
     password,
-  }: Pick<NewUser, 'email' | 'password'>): Promise<User> {
-    const user = await this.db.insert(users).values({ email, password }).returning();
+    tx
+  }: Pick<NewUser, 'email' | 'password'> & {tx?:PgTransaction<any,any,any>}): Promise<User> {
+    const db = tx ?? this.db;
+    const user = await db.insert(users).values({ email, password }).returning();
     return user[0];
   }
 }

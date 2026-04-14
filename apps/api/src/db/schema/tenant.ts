@@ -1,3 +1,4 @@
+import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 import { pgTable, uuid, text, timestamp } from 'drizzle-orm/pg-core';
 
 export const tenants = pgTable('tenants', {
@@ -5,3 +6,6 @@ export const tenants = pgTable('tenants', {
   name: text('name').notNull(),
   createdAt: timestamp('created_at').defaultNow(),
 });
+
+export type Tenant = InferSelectModel<typeof tenants>;
+export type NewTenant = InferInsertModel<typeof tenants>;

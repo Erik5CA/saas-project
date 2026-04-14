@@ -8,6 +8,9 @@ import { jwtConstants } from "./constants";
 import { UserModule } from "../users/user.module";
 import { LocalStrategy } from "./strategies/local.strategy";
 import { JwtStrategy } from "./strategies/jwt.strategy";
+import { TenantRepository } from "../tenant/tenant.repository";
+import { MembershipRepository } from "../memberships/membership.repository";
+import { RoleRepository } from "../roles/role.repository";
 
 @Module({
     imports: [
@@ -19,7 +22,7 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
         UserModule,
     ],
     controllers: [AuthController],
-    providers: [AuthService, AuthRepository, LocalStrategy, JwtStrategy],
+    providers: [AuthService, AuthRepository, LocalStrategy, JwtStrategy, TenantRepository, MembershipRepository, RoleRepository],
     exports: [AuthService, AuthRepository],
 })
 export class AuthModule {}
