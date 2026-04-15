@@ -9,9 +9,10 @@ import { JwtAuthGuard } from './modules/auth/guards/jwt.guard';
 import { MeModule } from './modules/me/me.module';
 import { MembershipModule } from './modules/memberships/membership.module';
 import { TenantModule } from './modules/tenant/tenant.module';
+import { ProjectModule } from './modules/projects/project.module';
 
 @Module({
-  imports: [DbModule, AuthModule, UserModule, MeModule, MembershipModule, TenantModule],
+  imports: [DbModule, AuthModule, UserModule, MeModule, MembershipModule, TenantModule, ProjectModule],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }],
 })

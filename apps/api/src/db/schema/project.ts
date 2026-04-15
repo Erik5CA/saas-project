@@ -1,3 +1,4 @@
+import { InferInsertModel, InferSelectModel } from 'drizzle-orm';
 import { pgTable, uuid, text } from 'drizzle-orm/pg-core';
 
 export const projects = pgTable('projects', {
@@ -8,3 +9,6 @@ export const projects = pgTable('projects', {
 
   createdBy: uuid('created_by'),
 });
+
+export type Project = InferSelectModel<typeof projects>;
+export type NewProject = InferInsertModel<typeof projects>;
