@@ -23,6 +23,7 @@ Content-Type: application/json
 ### Profile
 GET {{baseUrl}}/auth/profile
 Authorization: Bearer {{token}}
+x-tenant-id: b30bd119-44ee-4fec-b5de-946073787919
 
 ### User Tenants
 GET {{baseUrl}}/me/tenants

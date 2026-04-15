@@ -11,6 +11,8 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
 import { TenantRepository } from "../tenant/tenant.repository";
 import { MembershipRepository } from "../memberships/membership.repository";
 import { RoleRepository } from "../roles/role.repository";
+import { PermissionModule } from "../permissions/permission.module";
+import { MembershipModule } from "../memberships/membership.module";
 
 @Module({
     imports: [
@@ -20,6 +22,8 @@ import { RoleRepository } from "../roles/role.repository";
             signOptions: { expiresIn: '1d' },
         }),
         UserModule,
+        PermissionModule,
+        MembershipModule
     ],
     controllers: [AuthController],
     providers: [AuthService, AuthRepository, LocalStrategy, JwtStrategy, TenantRepository, MembershipRepository, RoleRepository],
