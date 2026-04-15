@@ -39,7 +39,6 @@ export class AuthController {
   }
 
   @Get('profile')
-  @UseGuards(TenantGuard)
   async getProfile(@Request() req: AuthenticatedRequest & {tenantId: string}) {
     const user = req.user;
     return {

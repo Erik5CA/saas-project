@@ -45,7 +45,7 @@ export class AuthService {
     };
   }
 
-  async signIn(user: AuthUser): Promise<{ accessToken: string, tenants: {id: string, name: string}[] }> {
+  async signIn(user: AuthUser): Promise<{ accessToken: string, tenants: {id: string, name: string}[], user: AuthUser }> {
     const payload: JwtPayload = { sub: user.id, email: user.email };
     const accessToken = this.jwtService.sign(payload);
 
@@ -58,6 +58,11 @@ export class AuthService {
         id: membership.tenantId,
         name: membership.tenant.name,
       })) || [],
+      user: {
+        id: user.id,
+        email: user.email,
+        // createdAt: new Date()
+      }
     };
   }
 
@@ -65,6 +70,9 @@ export class AuthService {
     email,
     password,
   }: SignUpDto): Promise<Omit<User, 'password'>> {
+    console.log('email', email);
+    console.log('password', password);
+
     const user = await this.authRepository.findByEmail(email);
 
     if (user) {
@@ -89,6 +97,7 @@ export class AuthService {
 
     // Buscar el rol owner
   const ownerRole = await this.roleRepository.findRoleByName('OWNER');
+  
 
   if(!ownerRole){
     throw new BadRequestException('No se encontro el rol owner');
@@ -98,15 +107,19 @@ export class AuthService {
     await this.membershipRepository.createMembership({
       userId: newUser.id,
       tenantId: newTenant.id,
-      roleId: ownerRole[0].id,
+      roleId: ownerRole.id,
     }, tx);
 
     return newUser;
   });
+
+
+  console.log({result})
   
   if(!result) {
     throw new Error('No se pudo crear el usuario');
   }
+
 
   const { password: _, ...userWithoutPassword } = result;
   return userWithoutPassword;
