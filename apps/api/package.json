@@ -18,8 +18,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "seed:role-permissions": "tsx src/db/seeders/role-permission.seed.ts"
+    "seed:role-permissions": "tsx src/db/seeders/role-permission.seed.ts",
+    "seed:demo": "tsx src/db/seeders/demo-data.seed.ts"
   },
+
   "dependencies": {
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",

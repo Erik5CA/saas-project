@@ -13,3 +13,7 @@ export interface AuthUser {
 export interface AuthenticatedRequest extends Request {
   user: AuthUser;
 }
+
+export interface AuthenticatedRequestWithTenant extends AuthenticatedRequest {
+  tenantId: string;
+}
